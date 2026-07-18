@@ -132,7 +132,7 @@ function Profile() {
                 {avatarPreview ? (
                   <img src={avatarPreview} alt="Preview" className="user-avatar" />
                 ) : user?.profileImage ? (
-                  <img src={`http://localhost:5000${user.profileImage}`} alt="Avatar" className="user-avatar" />
+                  <img src={user.profileImage} alt="Avatar" className="user-avatar" />
                 ) : (
                   <div className="avatar-placeholder">{user?.name?.charAt(0).toUpperCase()}</div>
                 )}

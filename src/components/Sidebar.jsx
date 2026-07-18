@@ -13,7 +13,6 @@ import {
 function Sidebar() {
   const { user, logout } = useAuth();
 
-  // Helper for active styling on router NavLinks
   const navLinkClass = ({ isActive }) =>
     `sidebar-link ${isActive ? 'active' : ''}`;
 
@@ -23,21 +22,25 @@ function Sidebar() {
         <div className="avatar-wrapper">
           {user?.profileImage ? (
             <img
-              src={`http://localhost:5000${user.profileImage}`}
+              src={user.profileImage}
               alt="Avatar"
               className="user-avatar"
               onError={(e) => {
-                // Fallback to initial
                 e.target.onerror = null;
-                e.target.src = `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(user?.name || 'User')}`;
+                e.target.src = `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(
+                  user?.name || 'User'
+                )}`;
               }}
             />
           ) : (
             <div className="avatar-placeholder">
-              {user?.name ? user.name.charAt(0).toUpperCase() : 'U'}
+              {user?.name
+                ? user.name.charAt(0).toUpperCase()
+                : 'U'}
             </div>
           )}
         </div>
+
         <div className="profile-info">
           <p className="profile-name">{user?.name || 'Welcome'}</p>
           <p className="profile-role">Creator Plan</p>
